@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backend</title>
+    <link rel="stylesheet" href="common.css">
+    <style>
+        .navbar{
+            margin-bottom: 50px;
+        }
+        input{
+            width: 400px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+<div><a href="frontend.html">Frontend</a></div>  
+<div><a href="backend.html">Backend</a></div>
+</div>
+
+<form id="idForm">
+<input type="text" id="imgUrl" placeholder="Enter image url"><br/>
+    <input type="text" id="name" placeholder="Enter your name"><br/>
+    <input type="text" id="logoUrl" placeholder="Enter logo url"><br/>
+    <input type="text" id="role" placeholder="Enter your role"><br/>
+    <input type="submit">
+</form>
+<script>
+// var form=document.querySelector("#idForm");
+var arr=JSON.parse(localStorage.getItem("investorsData")) || [];
+document.querySelector("#idForm").addEventListener("submit",addData)
+function addData(){
+    event.preventDefault();
+    // console.log("vinod")
+    var obj={
+        image:idForm.imgUrl.value,
+        name:idForm.name.value,
+        logo:idForm.logoUrl.value,
+        role:idForm.role.value
+
+    }
+    arr.push(obj);
+    localStorage.setItem("investorsData",JSON.stringify(arr))
+
+
+}
+</script>
+
+
+    
+</body>
+</html>
