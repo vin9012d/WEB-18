@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1{
+            text-align: center;
+            /* margin: auto; */
+            color: red;
+        }
+        .buttons{
+            margin-top: 10px;
+            width: 70%;
+            margin: auto;
+            text-align: center;
+        }
+        button{
+            padding: 10px;
+            background-color: rgb(114, 58, 58);  
+            color: white;
+            margin-left: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1></h1>
+    <div class="buttons">
+<button id="inc">
+    Increment
+</button>
+<button id="dec">
+    Decrement
+</button>
+    </div>
+    
+</body>
+<script>
+    var head=document.querySelector("h1");
+   var count= head.innerText=localStorage.getItem("counter") || 0;
+    document.querySelector("#inc").addEventListener("click", funcInc)
+    function funcInc(){
+      count++;
+      document.querySelector("h1").innerText=count;
+      localStorage.setItem("counter",count)
+    }
+    document.querySelector("#dec").addEventListener("click", funcDec)
+    function funcDec(){
+      count--;
+      document.querySelector("h1").innerText=count;
+      localStorage.setItem("counter",count)  
+    }
+    
+</script>
+</html>
