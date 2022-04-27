@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        th,td{
+            width: 150px;
+            background-color: aliceblue;
+            height: auto;
+        }
+        table{
+            width: 70%;
+            margin: auto;
+            text-align: center;
+        }
+        img{
+            height: 100px;
+        }
+            .navbar{
+          display: flex;
+          justify-content: space-around;
+          background-color: teal;
+          color: #000;
+          width: 70%;
+          margin: auto;
+        }
+        .navbar>div>a{
+          padding: 15px;
+          font-size: 30px;
+        text-decoration: none;
+        }
+    </style>
+    
+</head>  
+<body>
+  <div class="navbar">
+    <div><a href="mens.html"> Men</a> </div>
+    <div> <a href="womens.html"> Women</a> </div>
+    <div > <a href="cart.html">Cart</a> </div>
+  </div>
+    <table>
+        <thead>
+<tr>
+    <th>Image</th>
+    <th>Name</th>
+    <th>MRP</th>
+    
+    <th>delete</th>
+    <th>Quantity</th>
+</tr>
+        </thead>
+        <tbody id="body">
+
+        </tbody>
+    </table>
+</body>
+<script>
+    var cartArr=JSON.parse(localStorage.getItem("cartData"));
+    display(cartArr);
+    function    display(data){
+      data.forEach(function(ele,ind){
+        var tr=document.createElement("tr")  
+
+        var td1=document.createElement("td")
+        var image=document.createElement("img");
+        image.setAttribute("src",ele.image_url)
+     td1.append(image)
+        var td2=document.createElement("td")
+        td2.innerText=ele.name;
+        var td3=document.createElement("td")
+        td3.innerText=ele.price;
+        var td4=document.createElement("t4")
+        td4.innerText="delete";
+        td4.style.color="blue";
+        td4.style.cursor="pointer"
+        td4.addEventListener("click",function(){
+deleteCart(ele,ind)
+        });
+        td5=document.createElement("td");
+        td5.innerText="+"
+        td5.style.color="green";
+        td5.addEventListener("click",function(){
+            increasePrice(ele,ind)
+        })
+        td5.style.cursor="pointer"
+        tr.append(td1,td2, td3,td4,td5)
+        document.querySelector("#body").append(tr)
+    });
+}
+    function deleteCart(ele,ind){
+        console.log(ind)
+        cartArr.splice(ind,1);
+        localStorage.setItem("cartData",JSON.stringify(cartArr));
+        window.location.reload();
+    }
+
+    function   increasePrice(ele,ind){
+        console.log("vinod")
+      ele.price=ele.price*2;
+    cartArr[ind].price=ele*2;
+    }
+</script>
+</html>

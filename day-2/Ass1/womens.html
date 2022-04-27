@@ -18,10 +18,30 @@
         strike{
             padding-left: 20px;
         }
+        .navbar{
+          display: flex;
+          justify-content: space-around;
+          background-color: teal;
+          color: #000;
+          width: 70%;
+          margin: auto;
+        }
+        .navbar>div>a{
+          padding: 15px;
+          font-size: 30px;
+        text-decoration: none;
+        }
     </style>
+    
 </head>  
 <body>
+  <div class="navbar">
+    <div><a href="mens.html"> Men</a> </div>
+    <div> <a href="womens.html"> Women</a> </div>
+    <div > <a href="cart.html">Cart</a> </div>
+  </div>
     <script>
+         var cartArr=JSON.parse(localStorage.getItem("cartData")) || [];
         var container=document.createElement("div");
           container.setAttribute("id","container")
           document.querySelector("body").append(container)
@@ -39,10 +59,18 @@ var strikedoffprice=document.createElement("strike");
 strikedoffprice.innerText=ele.strikedoffprice;
 var cart=document.createElement("button");
 cart.innerText="Add to cart"
+cart.addEventListener("click", function(){
+    addingToCart(ele)
+});
 price.append(strikedoffprice);
 box.append(image,name,price,cart)
 document.querySelector("#container").append(box)
       });
+      function  addingToCart(ele){
+        //   console.log(ele)
+        cartArr.push(ele);
+        localStorage.setItem("cartData",JSON.stringify(cartArr))
+      }
     </script>
 </body>
 </html>
